@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
-
 using IdentityServer4.Models;
 using System.Collections.Generic;
 
@@ -9,19 +8,26 @@ namespace UdemyAndroidKotlin.Auth
 {
     public static class Config
     {
+        public static IEnumerable<ApiResource> apiResources => new ApiResource[]
+        {
+            new ApiResource("resource_product_api"){ Scopes={ "api_product_fullpermission" } },
+            new ApiResource("resource_photo_api"){ Scopes={ "api_photo_fullpermission" } }
+        };
+
+        public static IEnumerable<ApiScope> ApiScopes =>
+           new ApiScope[]
+           {
+                new ApiScope("api_product_fullpermission","Product API için tüm izinler"),
+                new ApiScope("api_photo_fullpermission","Photo API için tüm izinler"),
+           };
+
         public static IEnumerable<IdentityResource> IdentityResources =>
                    new IdentityResource[]
                    {
+                       new IdentityResources.Email(),
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
                    };
-
-        public static IEnumerable<ApiScope> ApiScopes =>
-            new ApiScope[]
-            {
-                new ApiScope("scope1"),
-                new ApiScope("scope2"),
-            };
 
         public static IEnumerable<Client> Clients =>
             new Client[]
