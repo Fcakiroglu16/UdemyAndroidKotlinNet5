@@ -27,6 +27,8 @@ namespace UdemyAndroidKotlin.Auth
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddLocalApiAuthentication();
+
             services.AddControllersWithViews();
 
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -47,6 +49,7 @@ namespace UdemyAndroidKotlin.Auth
                 options.EmitStaticAudienceClaim = true;
             })
                 .AddInMemoryIdentityResources(Config.IdentityResources)
+                .AddInMemoryApiResources(Config.apiResources)
                 .AddInMemoryApiScopes(Config.ApiScopes)
                 .AddInMemoryClients(Config.Clients)
                 .AddAspNetIdentity<ApplicationUser>();
@@ -54,17 +57,17 @@ namespace UdemyAndroidKotlin.Auth
             // not recommended for production - you need to store your key material somewhere secure
             builder.AddDeveloperSigningCredential();
 
-            services.AddAuthentication()
-                .AddGoogle(options =>
-                {
-                    options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+            //services.AddAuthentication()
+            //    .AddGoogle(options =>
+            //    {
+            //        options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
 
-                    // register your IdentityServer with Google at https://console.developers.google.com
-                    // enable the Google+ API
-                    // set the redirect URI to https://localhost:5001/signin-google
-                    options.ClientId = "copy client ID from Google here";
-                    options.ClientSecret = "copy client secret from Google here";
-                });
+            //        // register your IdentityServer with Google at https://console.developers.google.com
+            //        // enable the Google+ API
+            //        // set the redirect URI to https://localhost:5001/signin-google
+            //        options.ClientId = "copy client ID from Google here";
+            //        options.ClientSecret = "copy client secret from Google here";
+            //    });
         }
 
         public void Configure(IApplicationBuilder app)
@@ -79,6 +82,7 @@ namespace UdemyAndroidKotlin.Auth
 
             app.UseRouting();
             app.UseIdentityServer();
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
