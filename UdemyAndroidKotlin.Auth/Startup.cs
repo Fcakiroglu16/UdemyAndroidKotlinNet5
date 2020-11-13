@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using UdemyAndroidKotlin.Auth.Services;
 
 namespace UdemyAndroidKotlin.Auth
 {
@@ -55,7 +56,7 @@ namespace UdemyAndroidKotlin.Auth
                 .AddAspNetIdentity<ApplicationUser>();
 
             // not recommended for production - you need to store your key material somewhere secure
-            builder.AddDeveloperSigningCredential();
+            builder.AddDeveloperSigningCredential().AddResourceOwnerValidator<IdentityResourceOwnerPasswordValidator>();
 
             //services.AddAuthentication()
             //    .AddGoogle(options =>
