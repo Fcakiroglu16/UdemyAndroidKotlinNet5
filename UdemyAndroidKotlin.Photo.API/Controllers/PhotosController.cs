@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using UdemyAndroidKotlin.Photo.API.Models;
 
 namespace UdemyAndroidKotlin.Photo.API.Controllers
 {
@@ -34,6 +35,19 @@ namespace UdemyAndroidKotlin.Photo.API.Controllers
             {
                 return BadRequest("photo is null");
             }
+        }
+
+        [HttpDelete]
+        public IActionResult PhotoDelete(PhotoDeleteDto photoDeleteDto)
+        {
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", photoDeleteDto.Url);
+
+            if (System.IO.File.Exists(path))
+            {
+                System.IO.File.Delete(path);
+                return NoContent();
+            }
+            return BadRequest();
         }
     }
 }
