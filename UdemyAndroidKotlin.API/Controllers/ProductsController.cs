@@ -51,5 +51,20 @@ namespace UdemyAndroidKotlin.API.Controllers
 
             return NoContent();
         }
+
+        //odata/products(3)
+        [HttpDelete]
+        public async Task<IActionResult> DeleteProduct(int key)
+        {
+            var product = await _context.Products.FindAsync(key);
+
+            if (product == null) return NotFound();
+
+            _context.Products.Remove(product);
+
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }
