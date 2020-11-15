@@ -17,7 +17,7 @@ namespace UdemyAndroidKotlin.API.Models
         public string Color { get; set; }
         public int Stock { get; set; }
 
-        public int PhotoPath { get; set; }
+        public string PhotoPath { get; set; }
 
         public int Category_Id { get; set; }
 

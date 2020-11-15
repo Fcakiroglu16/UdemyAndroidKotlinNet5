@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.OData.Builder;
 using Microsoft.AspNet.OData.Extensions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -34,6 +35,13 @@ namespace UdemyAndroidKotlin.API
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+            {
+                options.Authority = "http://localhost:5001";
+                options.Audience = "resource_product_api";
+                options.RequireHttpsMetadata = false;
+            });
+
             services.AddOData();
             services.AddControllers();
             //services.AddSwaggerGen(c =>
@@ -53,7 +61,7 @@ namespace UdemyAndroidKotlin.API
             }
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
             //ProductsController
             var builder = new ODataConventionModelBuilder();

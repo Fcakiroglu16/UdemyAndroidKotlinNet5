@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.OData;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,6 +10,7 @@ using UdemyAndroidKotlin.API.Models;
 
 namespace UdemyAndroidKotlin.API.Controllers
 {
+    [Authorize]
     public class ProductsController : ODataController
     {
         private readonly AppDbContext _context;
