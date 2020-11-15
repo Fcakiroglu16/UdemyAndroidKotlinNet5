@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UdemyAndroidKotlin.Auth", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdemyAndroidKotlin.API", "UdemyAndroidKotlin.API\UdemyAndroidKotlin.API.csproj", "{A92CE3FC-D56A-4177-9633-131872771D36}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdemyAndroidKotlin.Photo.API", "UdemyAndroidKotlin.Photo.API\UdemyAndroidKotlin.Photo.API.csproj", "{A031C2B3-1AD9-47D9-B56F-9BB9E1C3BDC8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A92CE3FC-D56A-4177-9633-131872771D36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A92CE3FC-D56A-4177-9633-131872771D36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A92CE3FC-D56A-4177-9633-131872771D36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A031C2B3-1AD9-47D9-B56F-9BB9E1C3BDC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A031C2B3-1AD9-47D9-B56F-9BB9E1C3BDC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A031C2B3-1AD9-47D9-B56F-9BB9E1C3BDC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A031C2B3-1AD9-47D9-B56F-9BB9E1C3BDC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
