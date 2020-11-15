@@ -18,6 +18,7 @@ namespace UdemyAndroidKotlin.API.Controllers
             _context = context;
         }
 
+        [EnableQuery(PageSize = 5)]
         //odata/products
         public IActionResult Get()
         {
