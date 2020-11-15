@@ -1,6 +1,9 @@
+﻿using Microsoft.AspNet.OData.Builder;
+using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -10,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UdemyAndroidKotlin.API.Models;
 
 namespace UdemyAndroidKotlin.API
 {
@@ -25,6 +29,12 @@ namespace UdemyAndroidKotlin.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+            });
+
+            services.AddOData();
             services.AddControllers();
             //services.AddSwaggerGen(c =>
             //{
@@ -45,9 +55,17 @@ namespace UdemyAndroidKotlin.API
             app.UseRouting();
 
             app.UseAuthorization();
+            //ProductsController
+            var builder = new ODataConventionModelBuilder();
+            builder.EntitySet<Product>("Products");
+            builder.EntitySet<Category>("Categories");
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.Select().Expand().OrderBy().Count().Filter();
+                // nasıl erişiriz -> odata/products
+                endpoints.MapODataRoute("odata", "odata", builder.GetEdmModel());
+
                 endpoints.MapControllers();
             });
         }
