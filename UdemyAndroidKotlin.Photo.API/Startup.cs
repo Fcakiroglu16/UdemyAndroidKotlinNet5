@@ -51,10 +51,10 @@ namespace UdemyAndroidKotlin.Photo.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "UdemyAndroidKotlin.Photo.API v1"));
             }
 
-            app.UseHttpsRedirection();
-
+            //    app.UseHttpsRedirection();
+            app.UseStaticFiles();
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
