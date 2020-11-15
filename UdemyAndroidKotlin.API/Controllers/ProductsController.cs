@@ -29,5 +29,27 @@ namespace UdemyAndroidKotlin.API.Controllers
         {
             return Ok(_context.Products.Where(x => x.Id == key));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> PostProduct([FromBody] Product product)
+        {
+            await _context.Products.AddAsync(product);
+            await _context.SaveChangesAsync();
+
+            return Ok(product);
+        }
+
+        //odata/Products(4)
+        [HttpPut]
+        public async Task<IActionResult> PutProduct([FromODataUri] int key, [FromBody] Product product)
+        {
+            product.Id = key;
+
+            _context.Entry(product).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }
