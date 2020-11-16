@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.OData.Builder;
+﻿using FluentValidation.AspNetCore;
+using Microsoft.AspNet.OData.Builder;
 using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -44,7 +45,10 @@ namespace UdemyAndroidKotlin.API
             });
 
             services.AddOData();
-            services.AddControllers();
+            services.AddControllers().AddFluentValidation(options =>
+            {
+                options.RegisterValidatorsFromAssemblyContaining<Startup>();
+            });
             //services.AddSwaggerGen(c =>
             //{
             //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "UdemyAndroidKotlin.API", Version = "v1" });
