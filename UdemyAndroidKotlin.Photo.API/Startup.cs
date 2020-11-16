@@ -50,6 +50,7 @@ namespace UdemyAndroidKotlin.Photo.API
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "UdemyAndroidKotlin.Photo.API v1"));
+                app.UseDelayRequestDevelopment();
             }
             app.UseCustomException();
             //    app.UseHttpsRedirection();

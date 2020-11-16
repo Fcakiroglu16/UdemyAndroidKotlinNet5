@@ -82,6 +82,7 @@ namespace UdemyAndroidKotlin.Auth
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+                app.UseDelayRequestDevelopment();
             }
             app.UseCustomException();
             app.UseStaticFiles();

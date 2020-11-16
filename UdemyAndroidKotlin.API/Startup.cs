@@ -17,6 +17,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using UdemyAndroidKotlin.API.Models;
 using UdemyAndroidKotlin.Shared.Extentions;
+using UdemyAndroidKotlin.Shared.Filters;
 
 namespace UdemyAndroidKotlin.API
 {
@@ -45,7 +46,10 @@ namespace UdemyAndroidKotlin.API
             });
 
             services.AddOData();
-            services.AddControllers().AddFluentValidation(options =>
+            services.AddControllers(options =>
+            {
+                options.Filters.Add<ValidateModelAttribute>();
+            }).AddFluentValidation(options =>
             {
                 options.RegisterValidatorsFromAssemblyContaining<Startup>();
             });
@@ -61,6 +65,7 @@ namespace UdemyAndroidKotlin.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDelayRequestDevelopment();
                 //app.UseSwagger();
                 //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "UdemyAndroidKotlin.API v1"));
             }
