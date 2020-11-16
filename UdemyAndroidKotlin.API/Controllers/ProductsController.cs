@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UdemyAndroidKotlin.API.Models;
+using UdemyAndroidKotlin.Shared.Models;
 
 namespace UdemyAndroidKotlin.API.Controllers
 {
@@ -36,6 +37,8 @@ namespace UdemyAndroidKotlin.API.Controllers
         [HttpPost]
         public async Task<IActionResult> PostProduct([FromBody] Product product)
         {
+            throw new CustomException("custom bir hata oldu");
+
             await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
 

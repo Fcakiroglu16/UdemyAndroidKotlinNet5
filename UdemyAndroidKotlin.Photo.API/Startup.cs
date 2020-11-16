@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UdemyAndroidKotlin.Shared.Extentions;
 
 namespace UdemyAndroidKotlin.Photo.API
 {
@@ -50,7 +51,7 @@ namespace UdemyAndroidKotlin.Photo.API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "UdemyAndroidKotlin.Photo.API v1"));
             }
-
+            app.UseCustomException();
             //    app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();

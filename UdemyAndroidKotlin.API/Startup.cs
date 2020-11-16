@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UdemyAndroidKotlin.API.Models;
+using UdemyAndroidKotlin.Shared.Extentions;
 
 namespace UdemyAndroidKotlin.API
 {
@@ -59,7 +60,7 @@ namespace UdemyAndroidKotlin.API
                 //app.UseSwagger();
                 //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "UdemyAndroidKotlin.API v1"));
             }
-
+            app.UseCustomException();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();

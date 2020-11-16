@@ -14,4 +14,8 @@
     <Folder Include="wwwroot\photos\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\UdemyAndroidKotlin.Shared\UdemyAndroidKotlin.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

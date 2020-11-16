@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using UdemyAndroidKotlin.Auth.Services;
 using FluentValidation.AspNetCore;
+using UdemyAndroidKotlin.Shared.Extentions;
 
 namespace UdemyAndroidKotlin.Auth
 {
@@ -35,7 +36,7 @@ namespace UdemyAndroidKotlin.Auth
             {
                 options.RegisterValidatorsFromAssemblyContaining<Startup>();
             });
-
+            services.UseCustomValidationResponse();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -82,7 +83,7 @@ namespace UdemyAndroidKotlin.Auth
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
             }
-
+            app.UseCustomException();
             app.UseStaticFiles();
 
             app.UseRouting();
