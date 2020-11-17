@@ -12,8 +12,14 @@ namespace UdemyAndroidKotlin.Auth
     {
         public static IEnumerable<ApiResource> apiResources => new ApiResource[]
         {
-            new ApiResource("resource_product_api"){ Scopes={ "api_product_fullpermission" } },
-            new ApiResource("resource_photo_api"){ Scopes={ "api_photo_fullpermission" } },
+            new ApiResource("resource_product_api"){
+                Scopes={ "api_product_fullpermission" },
+                ApiSecrets=new []{new Secret("apisecret".Sha256()) } },
+
+            new ApiResource("resource_photo_api")
+            { Scopes={ "api_photo_fullpermission" },
+             ApiSecrets=new []{new Secret("photosecret".Sha256()) }
+            },
             new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
         };
 
