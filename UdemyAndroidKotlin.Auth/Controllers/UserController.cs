@@ -8,6 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 using UdemyAndroidKotlin.Auth.Models;
+using UdemyAndroidKotlin.Shared.Models;
 using static IdentityServer4.IdentityServerConstants;
 
 namespace UdemyAndroidKotlin.Auth.Controllers
@@ -44,8 +45,13 @@ namespace UdemyAndroidKotlin.Auth.Controllers
 
             if (!result.Succeeded)
             {
+                var errorDto = new ErrorDto();
+                errorDto.Status = 400;
+                errorDto.IsShow = true;
+                errorDto.Errors.AddRange(result.Errors.Select(x => x.Description).ToList());
+
                 //Hata  mesajı gönderilecek
-                return BadRequest();
+                return BadRequest(errorDto);
             }
 
             return NoContent();
