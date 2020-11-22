@@ -12,7 +12,7 @@ namespace UdemyAndroidKotlin.Shared.Extentions
         {
             app.Use(async (context, next) =>
            {
-               await Task.Delay(1000);
+               await Task.Delay(4000);
 
                await next.Invoke();
            });
