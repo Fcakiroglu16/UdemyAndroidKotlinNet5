@@ -28,6 +28,7 @@ namespace UdemyAndroidKotlin.API.Controllers
             return Ok(_context.Products.AsQueryable());
         }
 
+        [EnableQuery]
         //odata/products(2)
         public IActionResult Get([FromODataUri] int key)
         {
@@ -37,8 +38,6 @@ namespace UdemyAndroidKotlin.API.Controllers
         [HttpPost]
         public async Task<IActionResult> PostProduct([FromBody] Product product)
         {
-            throw new CustomException("custom bir hata oldu");
-
             await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
 

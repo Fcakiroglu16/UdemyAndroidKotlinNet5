@@ -61,7 +61,7 @@ namespace UdemyAndroidKotlin.Auth
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                     AllowOfflineAccess = true,
                     AllowedScopes = { IdentityServerConstants.StandardScopes.Email,IdentityServerConstants.StandardScopes.OpenId,IdentityServerConstants.StandardScopes.Profile, "api_product_fullpermission","api_photo_fullpermission",IdentityServerConstants.StandardScopes.OfflineAccess },
-                    AccessTokenLifetime=10*60,
+                    AccessTokenLifetime=1*60*60,
                     RefreshTokenUsage=TokenUsage.ReUse,
                    RefreshTokenExpiration=TokenExpiration.Absolute,
                     AbsoluteRefreshTokenLifetime=(int) (DateTime.Now.AddDays(60)-DateTime.Now).TotalSeconds
